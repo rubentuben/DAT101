@@ -12,31 +12,37 @@
     <ol>
       <li>Where should you use constants, and where should you use variables? Can they all be constants?</li>
       <p>
-				Replace this with you answer
+				Constants should be used when the value of the variable is not meant to change through the program. While variables should be used when the value is expected to change.
 			</p>
       <li>How do parentheses affect the arithmetic outcome of an expression?</li>
       <p>
-				Replace this with you answer
+				Parentheses work the same in javascript as in standard maths. They change the order that the equation is calculated. So they calculate the values that are in the parentheses first, before moving on to the rest of the equation.
 			</p>
       <li>How do we limit floating-point numbers to a given number of decimals?</li>
       <p>
-				Replace this with you answer
+				By using the round function, we can force the program to only use a set number of decimals at the end of a floating-point number. 
 			</p>
       <li>How can we compare two floating-point values to see if they are equal (is 12.199999 the same as 12.2)?</li>
       <p>
-				Replace this with you answer
+				If we use "Maths.abs(12.199999 - 12.2) < 0.000001", we can check if they are equal. Because floating-point numbers can be inaccurate, we use the absolute value of the numbers to check if they are in a certain range of each other, rather than checking them up against each other, which could lead to inaccuracies.
 			</p>
       <li>What do comparison operators return, and how can we check if they are FALSE or TRUE?</li>
       <p>
-				Replace this with you answer
+				All comparison operators return a boolean value (true or false). We can use an if statement. 
+        Like: 
+        if (5 > 3) {
+          console.log("5 is greater than 3");
+        } 
+        
+        To check if the value is boolean. If the comparison is true, then the console will return the statement written, and you have checked if its true. And vice versa.
 			</p>
       <li>How does the Math.random() function work, and what can it be used for?</li>
       <p>
-				Replace this with you answer
+				You can use Math.random() to generate a random decimal number between 0 and 1. You can add Math.floor and then in parentheses: (Math.random() * 10) + 1 to generate a random number between 1 and 10. This could be used for rng in your code.
 			</p>
       <li>What is modulus (%), and when do we need this operator in mathematical operations?</li>
       <p>
-				Replace this with you answer
+				The modulus operator is used for finding the remains of a division. This could be used in any situation where the remains of a division is of importance.
 			</p>
     </ol>
 		<script type="module" src="./task_2-2.mjs" defer></script>
