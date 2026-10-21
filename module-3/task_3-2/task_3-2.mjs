@@ -3,223 +3,176 @@ import { printOut, newLine } from "../../common/script/utils.mjs";
 
 printOut("--- Part 1 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-function printTodaysDate() {
-    const today = new Date();
-    const formatted = today.toLocaleDateString("no-NB", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    });
-    printOut(formatted);
-}
-printTodaysDate();
+let upLine = "";
+for (let i = 1; i <10; i++)
+{upLine += i + " ";}
+printOut(upLine)
+
+let downLine = "";
+for (let i =10; i >=1; i--) 
+{downLine += i + " ";}
+printOut(downLine)
+
 printOut(newLine);
 
 printOut("--- Part 2 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-function getTodaysDate() {
-    const today = new Date();
-    const formatted = today.toLocaleDateString("no-NB", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    });
-    printOut(formatted);
-    return today;
+const target = 45;
+let guess = 0;
+let attempts = 0;
+
+while (guess !== target) {
+    guess = Math.floor(Math.random() * 60) + 1;
+    attempts++;
 }
 
-function daysUntilGTA6() {
-    const release = new Date("2026-11-19");
-    const today = new Date();
-    const msPerDay = 1000 * 60 * 60 * 24;
-    return Math.ceil((release - today) / msPerDay);
-}
-
-const todayDate = getTodaysDate();
-const daysLeft = daysUntilGTA6();
-printOut(`🌴 Only ${daysLeft} days until GTA 6 releases on November 19, 2026! Get ready! 🌴`);
-printOut(newLine);
+printOut(`Part 2: Guessed ${guess} in ${attempts} attempts.`);
 
 printOut("--- Part 3 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-function circleInfo(radius) {
-    const diameter = 2 * radius;
-    const circumference = 2 * Math.PI * radius;
-    const area = Math.PI * radius * radius;
+// Part 3: Guessing Game - Level Up
+const target2 = 420697;
+let guess2 = 0;
+let attempts2 = 0;
 
-    printOut(`Radius: ${radius}`);
-    printOut(`Diameter: ${diameter.toFixed(2)}`);
-    printOut(`Circumference: ${circumference.toFixed(2)}`);
-    printOut(`Area: ${area.toFixed(2)}`);
+const startTime = Date.now();
+
+while (guess2 !== target2) {
+    guess2 = Math.floor(Math.random() * 1000000) + 1;
+    attempts2++;
 }
 
-circleInfo(5);
+const endTime = Date.now();
+const elapsed = endTime - startTime;
+
+printOut(`Guessed ${guess2} in ${attempts2} attempts.`);
+printOut(`Time taken: ${elapsed} milliseconds.`);
 printOut(newLine);
 
 printOut("--- Part 4 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-function rectangleInfo(rect) {
-    const circumference = 2 * (rect.width + rect.height);
-    const area = rect.width * rect.height;
 
-    printOut(`Width: ${rect.width}, Height: ${rect.height}`);
-    printOut(`Circumference: ${circumference}`);
-    printOut(`Area: ${area}`);
-}
+/* Put your code below here! */
+const primes = [];
 
-rectangleInfo({ width: 10, height: 4 });
-printOut(newLine);
+for (let n = 2; n < 400; n++) {
+    let isPrime = true;
+    let divisor = 2;
+
+    while (divisor <= Math.sqrt(n)) {
+        if (n % divisor === 0) {
+            isPrime = false;
+            break;
+        }
+        divisor++;}
+        if (isPrime) {primes.push(n);}}
+
+printOut(`Primes less than 400: ${primes.join(", ")}`);
+printOut(`Total primes found: ${primes.length}`);
 
 printOut("--- Part 5 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-function convertTemperature(value, type) {
-    const t = type.toUpperCase();
-    let celsius, fahrenheit, kelvin;
-
-    if (t === "C") {
-        celsius = value;
-        fahrenheit = (value * 9 / 5) + 32;
-        kelvin = value + 273.15;
-    } else if (t === "F") {
-        fahrenheit = value;
-        celsius = (value - 32) * 5 / 9;
-        kelvin = celsius + 273.15;
-    } else if (t === "K") {
-        kelvin = value;
-        celsius = value - 273.15;
-        fahrenheit = (celsius * 9 / 5) + 32;
-    } else {
-        printOut("Unknown temperature type!");
-        return;
+for (let row = 1; row <= 7; row++) {
+    let line = "";
+    for (let col = 1; col <= 9; col++) {
+        line += `K${col}R${row} `;
     }
-
-    printOut(`Input: ${value} ${t}`);
-    printOut(`Celsius: ${Math.round(celsius)}`);
-    printOut(`Fahrenheit: ${Math.round(fahrenheit)}`);
-    printOut(`Kelvin: ${Math.round(kelvin)}`);
+    printOut(line.trim());
 }
-
-convertTemperature(100, "C");
-convertTemperature(212, "F");
-convertTemperature(300, "K");
 printOut(newLine);
 
 printOut("--- Part 6 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-function netPrice(gross, vatGroup) {
-    const group = vatGroup.toLowerCase();
-    let vatRate;
 
-    if (group === "normal") {
-        vatRate = 25;
-    } else if (group === "food") {
-        vatRate = 15;
-    } else if (group === "hotel" || group === "transport" || group === "cinema") {
-        vatRate = 10;
-    } else {
-        printOut("Unknown VAT group!");
-        return NaN;
-    }
+const grades = [];
+for (let i = 0; i < 5; i++) {
+    grades.push(Math.floor(Math.random() * 236) + 1);
 
-    return (100 * gross) / (vatRate + 100);
 }
 
-printOut(`Net price (normal, 1250 kr gross): ${netPrice(1250, "normal").toFixed(2)} kr`);
-printOut(`Net price (food, 115 kr gross): ${netPrice(115, "Food").toFixed(2)} kr`);
-printOut(`Net price (cinema, 220 kr gross): ${netPrice(220, "CINEMA").toFixed(2)} kr`);
-printOut(`Net price (goblins, 500 kr gross): ${netPrice(500, "goblins")}`);
+function getLetterGrade(points) {
+    const percentage = (points / 236) * 100;
+    if (percentage >= 89) return "A";
+    if (percentage >= 77) return "B";
+    if (percentage >= 65) return "C";
+    if (percentage >= 53) return "D";
+    if (percentage >= 41) return "E";
+    return "F";
+}
+
+for (let i = 0; i < grades.length; i++) { 
+    const points = grades[i];
+    const percentage = (points / 236) * 100;
+    const letter = getLetterGrade(points);
+     printOut(`Student ${i + 1}: ${points} points (${percentage.toFixed(1)}%) → Grade ${letter}`);
+}
 printOut(newLine);
 
 printOut("--- Part 7 ----------------------------------------------------------------------------------------------");
 /* Put your code below here!*/
-function calculateSDT(speed, distance, time) {
-    const values = { speed, distance, time };
-    const missing = Object.values(values).filter(v => v === undefined).length;
-
-    if (missing > 1) return NaN;
-    if (speed === undefined) return distance / time;
-    if (distance === undefined) return speed * time;
-    if (time === undefined) return distance / speed;
-    return NaN;
-}
-
-printOut(`Speed (d=100, t=5): ${calculateSDT(undefined, 100, 5)}`);
-printOut(`Distance (s=20, t=4): ${calculateSDT(20, undefined, 4)}`);
-printOut(`Time (s=50, d=200): ${calculateSDT(50, 200, undefined)}`);
-printOut(`Two missing: ${calculateSDT(undefined, 100, undefined)}`);
-printOut(newLine);
-
-printOut("--- Part 8 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-function padString(text, maxLength, padChar, insertBefore) {
-    if (text.length >= maxLength) {
-        return text;
+function rollSixDice() {
+    const dice = [];
+    for (let i = 0; i < 6; i++) {
+        dice.push(Math.floor(Math.random() * 6) + 1);
     }
-
-    const missing = maxLength - text.length;
-    const filler = padChar.repeat(missing);
-
-    return insertBefore ? filler + text : text + filler;
+    return dice;
 }
 
-printOut(padString("hello", 10, "*", true));
-printOut(padString("hello", 10, "*", false));
-printOut(newLine);
-
-printOut("--- Part 9 ----------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-
-function checkMathPattern(lines) {
-    let current = 1;
-
-    for (let n = 1; n <= lines; n++) {
-        let leftSide = "";
-        let rightSide = "";
-        let leftSum = 0;
-        let rightSum = 0;
-
-        for (let i = 0; i < n + 1; i++) {
-            leftSide += current + " ";
-            leftSum += current;
-            current++;
-        }
-
-        for (let i = 0; i < n; i++) {
-            rightSide += current + " ";
-            rightSum += current;
-            current++;
-        }
-
-        if (n <= 7) {
-            const formattedLeft = leftSide.trim().padEnd(30);
-            const formattedRight = rightSide.trim().padStart(30);
-            printOut(formattedLeft + " = " + formattedRight);
-        }
-
-        if (leftSum !== rightSum) {
-            printOut(`Mismatch at line ${n}: ${leftSum} ≠ ${rightSum}`);
-            return;
-        }
+function countValues(dice) {
+    const counts = {};
+    for (const d of dice) {
+        counts[d] = (counts[d] || 0) + 1;
     }
-
-    printOut("Mathematics is fun!");
+    return counts;
 }
 
-checkMathPattern(200);
-printOut(newLine);
-
-/* Task 10*/
-printOut("--- Part 10 ---------------------------------------------------------------------------------------------");
-/* Put your code below here!*/
-function factorial(n) {
-    if (n <= 1) {
-        return 1;
-    }
-    return n * factorial(n - 1);
+function isFullStraight(dice) {
+    const sorted = [...dice].sort((a, b) => a - b);
+    return sorted.join("") === "123456";
 }
 
-printOut(`Factorial of 5 is: ${factorial(5)}`);
-printOut(`Factorial of 6 is: ${factorial(6)}`);
+function isThreePairs(dice) {
+    const counts = Object.values(countValues(dice));
+    return counts.length === 3 && counts.every(c => c === 2);
+}
+
+function isTower(dice) {
+    const counts = Object.values(countValues(dice)).sort((a, b) => a - b);
+    return counts.length === 2 && counts[0] === 2 && counts[1] === 4;
+}
+
+function isYahtzee(dice) {
+    return new Set(dice).size === 1;
+}
+
+let throws;
+let dice;
+
+throws = 0;
+do {
+    dice = rollSixDice();
+    throws++;
+} while (!isFullStraight(dice));
+printOut(`Full straight (1 2 3 4 5 6): ${throws} throws`);
+
+throws = 0;
+do {
+    dice = rollSixDice();
+    throws++;
+} while (!isThreePairs(dice));
+printOut(`3 pairs: ${throws} throws`);
+
+throws = 0;
+do {
+    dice = rollSixDice();
+    throws++;
+} while (!isTower(dice));
+printOut(`Tower (2 of a kind + 4 of a kind): ${throws} throws`);
+
+throws = 0;
+do {
+    dice = rollSixDice();
+    throws++;
+} while (!isYahtzee(dice));
+printOut(`Yahtzee (all same): ${throws} throws`);
+
 printOut(newLine);
